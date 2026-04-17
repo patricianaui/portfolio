@@ -35,23 +35,6 @@ export function About() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="space-y-6"
           >
-            <p className="text-lg leading-relaxed">
-              I'm Pat, a DLSU student building at the intersection of design and
-              data. I believe the best products come from understanding both how things look and
-              how they work.
-            </p>
-
-            <p className="text-lg leading-relaxed">
-              Art teaches you to see. Science teaches you to think. Neither alone is enough. The
-              intersection is where products stop being functional and start resonating with real
-              people.
-            </p>
-
-            <p className="text-lg leading-relaxed">
-              Right now, I'm learning how to turn data into insight and insight into products that
-              matter. Building merkana.ph taught me that student problems are worth solving —
-              especially when no one else is solving them.
-            </p>
           </motion.div>
         </div>
       </div>
