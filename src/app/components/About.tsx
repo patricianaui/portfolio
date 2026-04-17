@@ -36,7 +36,7 @@ export function About() {
             className="space-y-6"
           >
             <p className="text-lg leading-relaxed">
-              I'm Pat, a DLSU student and co-founder building at the intersection of design and
+              I'm Pat, a DLSU student building at the intersection of design and
               data. I believe the best products come from understanding both how things look and
               how they work.
             </p>

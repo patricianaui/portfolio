@@ -6,9 +6,9 @@ import { ArrowUpRight } from "lucide-react";
 const projects = [
   {
     name: "merkana.ph",
-    description: "a student marketplace for dlsu — buy and sell with people you actually go to school with.",
+    description: "a student marketplace for dlsu — buy and sell with people you actually go to school with (currently in beta)",
     image: "/merkana-screenshot.png",
-    link: "https://merkana.ph",
+    link: "www.merkana.ph",
     isPlaceholder: false
   },
   {
@@ -51,9 +51,8 @@ export function Work() {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.6, delay: 0.1 * (index + 1) }}
-              className={`group relative overflow-hidden border border-white/10 bg-card ${
-                project.isPlaceholder ? 'opacity-50' : ''
-              }`}
+              className={`group relative overflow-hidden border border-white/10 bg-card ${project.isPlaceholder ? 'opacity-50' : ''
+                }`}
               style={{
                 aspectRatio: '16/11'
               }}

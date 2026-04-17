@@ -17,7 +17,7 @@ const currentItems = [
     icon: "📖",
     label: "reading",
     value:
-      "so good they can't ignore you, branding that means business",
+      "the safekeep",
   },
 ];
 

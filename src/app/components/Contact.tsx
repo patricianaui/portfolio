@@ -72,7 +72,7 @@ export function Footer() {
         style={{ fontFamily: 'var(--font-mono)' }}
         className="text-xs opacity-50 lowercase"
       >
-        patricia naui · built with intention · 2026
+        patricia naui · 2026
       </p>
     </footer>
   );
