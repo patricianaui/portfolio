@@ -1,4 +1,4 @@
-# Patricia Nalui | Portfolio
+# Patricia Naui | Portfolio
 
 Personal portfolio site showcasing design and development work.
 
