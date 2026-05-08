@@ -12,13 +12,8 @@ import {
 import merkana1 from "@/assets/projects/merkana/img1.png";
 import merkana2 from "@/assets/projects/merkana/img2.png";
 
-// Place your bream design lab image at: src/assets/projects/bream/img1.png
-// Then uncomment and add bream1 to the bream project's images array
-// import bream1 from "@/assets/projects/bream/img1.png";
-
-// Place your burbot image at: src/assets/projects/burbot/img1.png
-// Then uncomment and add burbot1 to the burbot project's images array
-// import burbot1 from "@/assets/projects/burbot/img1.png";
+import bream1 from "@/assets/projects/bream/img1.png";
+import burbot1 from "@/assets/projects/burbot/img1.png";
 
 type LinkType = 'external' | 'internal';
 
@@ -41,7 +36,7 @@ const projects: {
   {
     name: "bream design lab",
     description: "an international collective of developers engineering tools for the modern developer. led by patricia naui.",
-    images: [], // add bream1 here after placing image at src/assets/projects/bream/img1.png
+    images: [bream1],
     link: "/bream-design-lab",
     linkType: 'internal',
     isPlaceholder: false
@@ -49,7 +44,7 @@ const projects: {
   {
     name: "burbot by bream design lab",
     description: "a persona-driven api auditor that simulates attacker logic to identify auth gaps.",
-    images: [], // add burbot1 here after placing image at src/assets/projects/burbot/img1.png
+    images: [burbot1],
     link: "/burbot-bream-design-lab",
     linkType: 'internal',
     isPlaceholder: false
