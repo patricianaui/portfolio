@@ -1,34 +1,93 @@
 import { motion, useInView } from "motion/react";
 import { useRef, useState, useEffect } from "react";
 import { ArrowUpRight } from "lucide-react";
-import { 
-  Carousel, 
-  CarouselContent, 
-  CarouselItem, 
-  type CarouselApi 
+import { Link } from "react-router";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  type CarouselApi
 } from "./ui/carousel";
 
 import merkana1 from "@/assets/projects/merkana/img1.png";
 import merkana2 from "@/assets/projects/merkana/img2.png";
 
-const projects = [
+// Place your bream design lab image at: src/assets/projects/bream/img1.png
+// Then uncomment and add bream1 to the bream project's images array
+// import bream1 from "@/assets/projects/bream/img1.png";
+
+// Place your burbot image at: src/assets/projects/burbot/img1.png
+// Then uncomment and add burbot1 to the burbot project's images array
+// import burbot1 from "@/assets/projects/burbot/img1.png";
+
+type LinkType = 'external' | 'internal';
+
+const projects: {
+  name: string;
+  description: string;
+  images: string[];
+  link: string | null;
+  linkType: LinkType;
+  isPlaceholder: boolean;
+}[] = [
   {
     name: "merkana.ph",
     description: "a student marketplace for dlsu — buy and sell with people you actually go to school with (currently in beta)",
     images: [merkana1, merkana2],
     link: "https://www.merkana.ph",
+    linkType: 'external',
     isPlaceholder: false
   },
   {
-    name: "project two",
-    description: "coming soon — exploring the next intersection.",
-    images: [],
-    link: null,
-    isPlaceholder: true
+    name: "bream design lab",
+    description: "an international collective of developers engineering tools for the modern developer. led by patricia naui.",
+    images: [], // add bream1 here after placing image at src/assets/projects/bream/img1.png
+    link: "/bream-design-lab",
+    linkType: 'internal',
+    isPlaceholder: false
+  },
+  {
+    name: "burbot by bream design lab",
+    description: "a persona-driven api auditor that simulates attacker logic to identify auth gaps.",
+    images: [], // add burbot1 here after placing image at src/assets/projects/burbot/img1.png
+    link: "/burbot-bream-design-lab",
+    linkType: 'internal',
+    isPlaceholder: false
   }
 ];
 
-function ProjectCard({ project, isInView, index }: { project: any, isInView: boolean, index: number }) {
+function ViewProjectLink({ link, linkType }: { link: string; linkType: LinkType }) {
+  const className = "inline-flex items-center gap-2 text-sm opacity-70 hover:opacity-100 hover:text-accent transition-all group-hover:gap-3 lowercase";
+  const style = { fontFamily: 'var(--font-mono)' };
+  const content = (
+    <>
+      view project
+      <ArrowUpRight className="w-4 h-4" />
+    </>
+  );
+
+  if (linkType === 'internal') {
+    return (
+      <Link to={link} className={className} style={style}>
+        {content}
+      </Link>
+    );
+  }
+
+  return (
+    <a
+      href={link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={className}
+      style={style}
+    >
+      {content}
+    </a>
+  );
+}
+
+function ProjectCard({ project, isInView, index }: { project: typeof projects[0], isInView: boolean, index: number }) {
   const [api, setApi] = useState<CarouselApi>();
 
   useEffect(() => {
@@ -46,14 +105,11 @@ function ProjectCard({ project, isInView, index }: { project: any, isInView: boo
       initial={{ opacity: 0, y: 30 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
       transition={{ duration: 0.6, delay: 0.1 * (index + 1) }}
-      className={`group relative overflow-hidden border border-white/10 bg-card ${project.isPlaceholder ? 'opacity-50' : ''
-        }`}
-      style={{
-        aspectRatio: '16/11'
-      }}
+      className="group relative overflow-hidden border border-white/10 bg-card"
+      style={{ aspectRatio: '16/11' }}
     >
       {/* Background Carousel */}
-      {!project.isPlaceholder && project.images.length > 0 && (
+      {project.images.length > 0 && (
         <div className="absolute inset-0 z-0">
           <Carousel setApi={setApi} opts={{ loop: true }} className="w-full h-full">
             <CarouselContent className="h-full ml-0">
@@ -65,7 +121,6 @@ function ProjectCard({ project, isInView, index }: { project: any, isInView: boo
                       alt={`${project.name} screenshot ${i + 1}`}
                       className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                     />
-                    {/* Dark overlay for readability */}
                     <div className="absolute inset-0 bg-black/50 group-hover:bg-black/30 transition-colors duration-500" />
                   </div>
                 </CarouselItem>
@@ -75,9 +130,7 @@ function ProjectCard({ project, isInView, index }: { project: any, isInView: boo
         </div>
       )}
 
-      {!project.isPlaceholder && (
-        <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
-      )}
+      <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
 
       <div className="relative h-full p-8 flex flex-col justify-between z-20">
         <div>
@@ -97,29 +150,10 @@ function ProjectCard({ project, isInView, index }: { project: any, isInView: boo
           </p>
         </div>
 
-        {!project.isPlaceholder && (
-          <a
-            href={project.link!}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-sm opacity-70 hover:opacity-100 hover:text-accent transition-all group-hover:gap-3 lowercase"
-            style={{ fontFamily: 'var(--font-mono)' }}
-          >
-            view project
-            <ArrowUpRight className="w-4 h-4" />
-          </a>
+        {project.link && (
+          <ViewProjectLink link={project.link} linkType={project.linkType} />
         )}
       </div>
-
-      {project.isPlaceholder && (
-        <div className="absolute inset-0 flex items-center justify-center z-20">
-          <div className="w-24 h-24 border border-white/10 rounded-sm flex items-center justify-center">
-            <span style={{ fontFamily: 'var(--font-mono)' }} className="text-xs opacity-30 lowercase">
-              tbd
-            </span>
-          </div>
-        </div>
-      )}
     </motion.div>
   );
 }
