@@ -6,18 +6,18 @@ const currentItems = [
   {
     icon: "📍",
     label: "building",
-    value: "merkana.ph",
+    value: "merkana.ph, bream design lab",
   },
   {
     icon: "📚",
     label: "learning",
-    value: "python, data science, ml, ui/ux",
+    value: "ml, ui/ux, embedded systems",
   },
   {
     icon: "📖",
     label: "reading",
     value:
-      "the safekeep",
+      "the priory of the orange tree",
   },
 ];
 
